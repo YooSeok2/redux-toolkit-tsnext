@@ -1,6 +1,4 @@
-.container {
-  padding: 0 2rem;
-}
+
 
 .main {
   min-height: 100vh;
@@ -10,6 +8,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #eaeaea;
+  width: 100%;
+}
+
+.box{
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.btnBox{
+  width: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .footer {
