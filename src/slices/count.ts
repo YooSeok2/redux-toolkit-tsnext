@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 import { loadUser } from "../actions/count";
 
 interface User {
@@ -42,6 +43,7 @@ export const countSlice = createSlice({
         state.loadUserLoading = true;
       })
       .addCase(loadUser.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.loadUserDone = true;
         state.user = action.payload;
       })

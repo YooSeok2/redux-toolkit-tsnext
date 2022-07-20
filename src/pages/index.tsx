@@ -1,26 +1,16 @@
-import { useCallback, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useSelector } from 'react-redux'
-import { RootState } from '../store'
+import Counter from '../components/Counter'
+import UserProfile from '../components/UserProfile'
+import wrapper from '../store'
 import { loadUser } from '../actions/count'
-import { useAppDispatch } from '../store'
-import {increment, decrement} from '../slices/count';
+
+export const getStaticProps = wrapper.getStaticProps( (store) => async ({preview}) => {
+   await store.dispatch(loadUser());
+})
 
 const Home: NextPage = () => {
-  const dispatch = useAppDispatch();
-  const {val, user} = useSelector((state:RootState) => {
-    return state.count
-  });
-
-  useEffect(()=> {
-    dispatch(loadUser());
-  }, []);
-
-  const onIncrement = useCallback(()=>dispatch(increment()), [])
-
-  const onDecrement = useCallback(()=>dispatch(decrement()), []) 
 
   return (
     <div className={styles.container}>
@@ -32,14 +22,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
          <div className={styles.box}>
-              <span>{val}</span>
-              <div className={styles.btnBox}>
-                  <button onClick={onIncrement}>+</button>
-                  <button onClick={onDecrement}>-</button>
-              </div>
-              <div className='load-user'>
-                  {user?.first_name}
-              </div>
+            <UserProfile />
          </div>
       </main>
     </div>
