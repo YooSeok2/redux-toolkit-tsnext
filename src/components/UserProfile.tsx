@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RootState } from '../store'
 import { useSelector } from 'react-redux'
 import styles from '../styles/Home.module.css'
+import { useAppDispatch } from '../store';
+import { loadUser } from '../actions/count';
 
 function UserProfile () {
+  const dispatch = useAppDispatch();
   const {user} = useSelector((state:RootState) => state.count);
+  
+  // useEffect(()=> {
+  //   dispatch(loadUser());
+  // }, []);
 
   return(
     <>

@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import {combineReducers} from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import countSlice from '../slices/count';
 

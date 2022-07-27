@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import {GetStaticProps, GetServerSideProps  } from 'next';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Counter from '../components/Counter'
@@ -6,9 +7,19 @@ import UserProfile from '../components/UserProfile'
 import wrapper from '../store'
 import { loadUser } from '../actions/count'
 
-export const getStaticProps = wrapper.getStaticProps( (store) => async ({preview}) => {
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps( (store) => async ({preview}) => {
    await store.dispatch(loadUser());
+   return {
+    revalidate: 60
+  }
 })
+
+// export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ({req, res, ...etc}) => {
+//   await store.dispatch(loadUser());
+//   return {
+//     props: {}
+//   };
+// });
 
 const Home: NextPage = () => {
 
